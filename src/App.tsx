@@ -6,30 +6,26 @@ import { trackEvent } from './store/actions/events';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 // import { useAppSelector, useAppDispatch } from 'app/hooks'
+import { Link } from 'react-router-dom'
 
 const App = ({ mixpanel }: any) => {
   // const dispatch = useDispatch();
   // const events = useSelector((state: EventsState) => state.events);
 
   // The `state` arg is correctly typed as `RootState` already
-  const events = useAppSelector((state) => state.events)
+  // const events = useAppSelector((state) => state.events)
   const dispatch = useAppDispatch()
 
-  // function handleTrackEvent() {
-  //   dispatch(trackEvent({eventName: 'Registered', eventData: {some: 'data'}}));
-  // }
-
   useEffect(() => {
-    dispatch(trackEvent({eventName: 'Registered', eventData: {some: 'data'}}));
+    dispatch(trackEvent({ eventName: 'Registered', eventData: { some: 'data' } }));
   }, []);
 
   return (
     <div>
-      {/* <button onClick={handleTrackEvent}>Track event</button> */}
-      <h2>Event Data</h2>
-      <hr />
-      <p> {JSON.stringify(events)} </p>
-
+      <nav>
+        <Link style={{marginRight: '20px'}} to="/events">Events</Link>
+        <Link to="/custom-events">Custom Events</Link>
+      </nav>
     </div>
   );
 };
